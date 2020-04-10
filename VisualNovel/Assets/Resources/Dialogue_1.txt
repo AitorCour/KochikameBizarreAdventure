@@ -1,2 +1,6 @@
 Kochikame, "En fila india chicas" ,0,L
-Hayami, "Voyy :D" ,1,R
+Hayami, "Voyy :D" ,2,R
+Kochikame, "Gordas no." ,0,L
+Hayami, "Jou" ,2,R
+Umi, "Mas para mi <3" ,1,R
+Kochikame, "B)" ,0,L

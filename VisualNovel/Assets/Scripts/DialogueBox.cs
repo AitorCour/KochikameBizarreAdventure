@@ -16,9 +16,8 @@ public class DialogueBox : MonoBehaviour
     private Text textUI;
     private Text textName;
 
-    /*private Image image_L;
-    private Image image_R;*/
-    //public GUIStyle customStyle;
+    private Image image_L;
+    private Image image_R;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +27,8 @@ public class DialogueBox : MonoBehaviour
         parser = GameObject.FindGameObjectWithTag("Parser").GetComponent<DialogueParser>();
         textUI = GameObject.FindGameObjectWithTag("Text").GetComponent<Text>();
         textName = GameObject.FindGameObjectWithTag("TextName").GetComponent<Text>();
-        //image_L = GameObject.FindGameObjectWithTag("ImageLeft").GetComponent<Image>();
-        //image_R = GameObject.FindGameObjectWithTag("ImageRight").GetComponent<Image>();
+        image_L = GameObject.FindGameObjectWithTag("ImageLeft").GetComponent<Image>();
+        image_R = GameObject.FindGameObjectWithTag("ImageRight").GetComponent<Image>();
         lineNum = 0;
     }
 
@@ -45,40 +44,18 @@ public class DialogueBox : MonoBehaviour
             pose = parser.GetPose(lineNum);
             position = parser.GetPosition(lineNum);
 
-            DisplayImages();
+            SetImages();
             Read();
             lineNum++;
         }
     }
-
-    /*private void OnGUI()
-    {
-        dialogue = GUI.TextField(new Rect(100, 400, 600, 200), dialogue, customStyle);
-    }*/
     private void ResetImages()
     {
-        //image_L.sprite = null;
-        //image_R.sprite = null;
-        if(nameCharacter != "")
-        {
-            GameObject character = GameObject.Find(nameCharacter);
-            SpriteRenderer currentSprite = character.GetComponent<SpriteRenderer>();//poner esto en el start
-            currentSprite.sprite = null;
-        }
+        image_L.sprite = null;
+        image_R.sprite = null;
+        image_R.gameObject.SetActive(false);
     }
-    private void DisplayImages()
-    {
-        if(nameCharacter != "")
-        {
-            GameObject character = GameObject.Find(nameCharacter);
-
-            SetSpritePositions(character);
-
-            SpriteRenderer currentSprite = character.GetComponent<SpriteRenderer>();//poner esto en el start
-            currentSprite.sprite = pose;
-        }
-    }
-    /*private void SetImage()
+    private void SetImages()
     {
         if(position == "L")
         {
@@ -87,17 +64,7 @@ public class DialogueBox : MonoBehaviour
         if (position == "R")
         {
             image_R.sprite = pose;
-        }
-    }*/
-    void SetSpritePositions(GameObject spriteObject)
-    {
-        if (position == "L")
-        {
-            spriteObject.transform.position = new Vector3(-3, 2, 0);
-        }
-        if (position == "R")
-        {
-            spriteObject.transform.position = new Vector3(3, 2, 0);
+            image_R.gameObject.SetActive(true);
         }
     }
     private void Read()

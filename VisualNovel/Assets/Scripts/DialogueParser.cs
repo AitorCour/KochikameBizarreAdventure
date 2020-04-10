@@ -11,7 +11,8 @@ using System.Linq;
 public class DialogueParser : MonoBehaviour
 {
     List<DialogueLine> lines;
-    List<Sprite> images;
+    //public List<Sprite> images;
+    public Sprite[] images;
     struct DialogueLine
     {
         public string name;
@@ -43,7 +44,7 @@ public class DialogueParser : MonoBehaviour
         lines = new List<DialogueLine>(); //instanciar lista
         LoadDialogue(file);
 
-        images = new List<Sprite>();
+        //images = new List<Sprite>();
         LoadImages();
     }
 
@@ -99,19 +100,15 @@ public class DialogueParser : MonoBehaviour
     {
         for(int i = 0; i < lines.Count; i++)
         {
-            string imageName = lines[i].name;
+            /*string imageName = lines[i].name;
             Sprite image = (Sprite)Resources.Load(imageName, typeof(Sprite));
             if(!images.Contains(image))
             {
                 images.Add(image);
-            }
-            /*string imageName = lines[i].name;
-            Sprite image = Resources.Load<Sprite>("Images");
-            if (!images.Contains(image))
-            {
-                images.Add(image);
             }*/
+            
         }
+        images = Resources.LoadAll<Sprite>("SpritesGame");
     }
     //https://answers.unity.com/questions/144200/are-there-any-csv-reader-for-unity3d-without-needi.html?sort=oldest
     string[] SplitCsvLine(string line)
