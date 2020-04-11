@@ -9,6 +9,8 @@ TagManager:
   - TextName
   - ImageLeft
   - ImageRight
+  - ImageLeftB
+  - ImageRightB
   layers:
   - Default
   - TransparentFX

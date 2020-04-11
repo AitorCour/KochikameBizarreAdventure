@@ -19,13 +19,14 @@ public class DialogueParser : MonoBehaviour
         public string content;
         public int pose;
         public string position;
-
-        public DialogueLine(string n, string c, int p, string pos)
+        public bool inScene;
+        public DialogueLine(string n, string c, int p, string pos, bool inSc)
         {
             name = n;
             content = c;
             pose = p;
             position = pos;
+            inScene = inSc;
         }
     }
 
@@ -73,6 +74,13 @@ public class DialogueParser : MonoBehaviour
 
         return ""; 
     }
+    public bool GetInScene(int lineNumber)//lineNumber -1?
+    {
+        if (lineNumber < lines.Count)
+            return lines[lineNumber].inScene;
+
+        return true;
+    }
 
     void LoadDialogue(string filename)
     {
@@ -88,7 +96,7 @@ public class DialogueParser : MonoBehaviour
                 if (line != null)
                 {
                     string[] line_values = SplitCsvLine(line);
-                    DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3]);
+                    DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3], bool.Parse(line_values[4]));
                     lines.Add(line_entry);
                 }
             }

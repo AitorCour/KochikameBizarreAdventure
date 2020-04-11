@@ -10,6 +10,10 @@ public class DialogueBox : MonoBehaviour
     public string nameCharacter;
     public Sprite pose;
     public string position;
+    public bool inScene;
+
+    private bool outNext;
+    private string outPosition;
 
     private int lineNum;
 
@@ -18,7 +22,9 @@ public class DialogueBox : MonoBehaviour
 
     private Image image_L;
     private Image image_R;
+    private Image image_RB;
 
+    private DoTween tween;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +35,13 @@ public class DialogueBox : MonoBehaviour
         textName = GameObject.FindGameObjectWithTag("TextName").GetComponent<Text>();
         image_L = GameObject.FindGameObjectWithTag("ImageLeft").GetComponent<Image>();
         image_R = GameObject.FindGameObjectWithTag("ImageRight").GetComponent<Image>();
+        image_RB = GameObject.FindGameObjectWithTag("ImageRightB").GetComponent<Image>();
+        tween = GetComponent<DoTween>();
+
         lineNum = 0;
+        outNext = false;
+
+        ResetImages();
     }
 
     // Update is called once per frame
@@ -37,13 +49,15 @@ public class DialogueBox : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            ResetImages();//Clear Images
+            //ResetImages();//Clear Images
 
             dialogue = parser.GetContent(lineNum);
             nameCharacter = parser.GetName(lineNum);
             pose = parser.GetPose(lineNum);
             position = parser.GetPosition(lineNum);
+            inScene = parser.GetInScene(lineNum);
 
+            MoveSprite();
             SetImages();
             Read();
             lineNum++;
@@ -52,20 +66,70 @@ public class DialogueBox : MonoBehaviour
     private void ResetImages()
     {
         image_L.sprite = null;
-        image_R.sprite = null;
-        image_R.gameObject.SetActive(false);
+        //image_R.sprite = null;
+        //image_R.gameObject.SetActive(false);
+        tween.MoveImage_R();
+        tween.MoveImage_L();
+        tween.MoveImage_RB();
+        tween.MoveImage_LB();
+    }
+    private void MoveSprite()
+    {
+        if(!inScene)
+        {
+            OutScene();
+        }
+        if(outNext && inScene)//si el bool temp, esta positivo, y ya hay una imagen nueva, entoces out
+        {
+            if (outPosition == "L")
+            {
+                tween.MoveImage_L();
+            }
+            if (outPosition == "R")
+            {
+                tween.MoveImage_R();
+                Debug.Log("Moving");
+            }
+            outNext = false;
+        }
+    }
+    private void OutScene()
+    {
+        if(!outNext)
+        {
+            outNext = true;
+            outPosition = position;
+            return;
+        }
     }
     private void SetImages()
     {
-        if(position == "L")
+        //if (!inScene) return;
+        if(position == "L") 
         {
+            tween.ToScreenImage_L();
+            tween.MoveImage_LB();
             image_L.sprite = pose;
         }
         if (position == "R")
         {
+            tween.ToScreenImage_R();
+            tween.MoveImage_RB();
             image_R.sprite = pose;
-            image_R.gameObject.SetActive(true);
         }
+        if (position == "LB")
+        {
+            tween.ToScreenImage_R();
+            tween.MoveImage_L();
+            image_R.sprite = pose;
+        }
+        if (position == "RB")
+        {
+            tween.ToScreenImage_RB();
+            tween.MoveImage_R();
+            image_RB.sprite = pose;
+        }
+
     }
     private void Read()
     {
