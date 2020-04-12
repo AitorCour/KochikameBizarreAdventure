@@ -6,23 +6,28 @@ using UnityEngine.UI;
 public class DialogueBox : MonoBehaviour
 {
     private DialogueParser parser;
-    public string dialogue;
-    public string nameCharacter;
-    public Sprite pose;
-    public string position;
-    public bool inScene;
+    private string dialogue;
+    private string nameCharacter;
+    private Sprite pose;
+    private string position;
+    private bool inScene;
+    private bool isDecision;
 
     private bool outNext;
+    private bool canPass;
     private string outPosition;
 
-    private int lineNum;
+    public int lineNum;
 
     private Text textUI;
     private Text textName;
 
+    private GameObject buttonPanel;
+
     private Image image_L;
     private Image image_R;
     private Image image_RB;
+    private Image image_LB;
 
     private DoTween tween;
     // Start is called before the first frame update
@@ -33,40 +38,66 @@ public class DialogueBox : MonoBehaviour
         parser = GameObject.FindGameObjectWithTag("Parser").GetComponent<DialogueParser>();
         textUI = GameObject.FindGameObjectWithTag("Text").GetComponent<Text>();
         textName = GameObject.FindGameObjectWithTag("TextName").GetComponent<Text>();
+        buttonPanel = GameObject.FindGameObjectWithTag("ButtonPanel");
         image_L = GameObject.FindGameObjectWithTag("ImageLeft").GetComponent<Image>();
         image_R = GameObject.FindGameObjectWithTag("ImageRight").GetComponent<Image>();
         image_RB = GameObject.FindGameObjectWithTag("ImageRightB").GetComponent<Image>();
+        image_LB = GameObject.FindGameObjectWithTag("ImageLeftB").GetComponent<Image>();
         tween = GetComponent<DoTween>();
 
-        lineNum = 0;
+        lineNum = -1;
         outNext = false;
+        canPass = true;
 
+        buttonPanel.SetActive(false);
         ResetImages();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !isDecision && canPass)
         {
             //ResetImages();//Clear Images
+            lineNum++;
 
             dialogue = parser.GetContent(lineNum);
             nameCharacter = parser.GetName(lineNum);
             pose = parser.GetPose(lineNum);
             position = parser.GetPosition(lineNum);
             inScene = parser.GetInScene(lineNum);
+            isDecision = parser.GetDecision(lineNum);
 
             MoveSprite();
             SetImages();
             Read();
-            lineNum++;
+            //lineNum++;
+        }
+        /*else if(Input.GetMouseButtonDown(0) && !isDecision && !canPass)
+        {
+            canPass = true;
+        }*/
+        if (Input.GetMouseButtonDown(1) && !isDecision)
+        {
+            //ResetImages();//Clear Images
+            lineNum--;
+
+            dialogue = parser.GetContent(lineNum);
+            nameCharacter = parser.GetName(lineNum);
+            pose = parser.GetPose(lineNum);
+            position = parser.GetPosition(lineNum);
+            inScene = parser.GetInScene(lineNum);
+            isDecision = parser.GetDecision(lineNum);
+
+            MoveSprite();
+            SetImages();
+            Read();
         }
     }
     private void ResetImages()
     {
         image_L.sprite = null;
-        //image_R.sprite = null;
+        image_R.sprite = null;
         //image_R.gameObject.SetActive(false);
         tween.MoveImage_R();
         tween.MoveImage_L();
@@ -133,7 +164,22 @@ public class DialogueBox : MonoBehaviour
     }
     private void Read()
     {
-        textUI.text = dialogue;
+        //textUI.text = dialogue;
+        textUI.text = string.Empty;
+
+        StartCoroutine(WaitScramble());
+        canPass = false;
+
+        tween.TextScramble(dialogue);
         textName.text = nameCharacter;
+        if(isDecision)//este rollo, o simplemente dejar preparadas las preguntas. Total, se va a otra escena
+        {
+            buttonPanel.SetActive(true);
+        }
+    }
+    IEnumerator WaitScramble()
+    {
+        yield return new WaitForSeconds(1);
+        canPass = true;
     }
 }

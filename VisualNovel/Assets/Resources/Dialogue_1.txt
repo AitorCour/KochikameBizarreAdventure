@@ -1,8 +1,9 @@
-Kochikame, "En fila india chicas" ,0,L,true
-Hayami, "Voyy :D" ,2,R,true
-Kochikame, "Gordas no." ,0,L,true
-Hayami, "Jou" ,2,R,true
-Umi, "Mas para mi <3" ,1,RB,true
-Kochikame, "B)" ,0,L,true
-Hayami, "Supongo que soy demasiado otaku" ,2,R,false
-Kochikame, "Lo siento, Hayami" ,0,L,true
+Kochikame, "En fila india chicas" ,0,L,true,false
+Hayami, "Voyy :D" ,2,R,true,false
+Kochikame, "Gordas no." ,0,L,true,false
+Hayami, "Jou" ,2,R,true,false
+Umi, "Mas para mi <3" ,1,RB,true,false
+Kochikame, "B)" ,0,L,true,false
+Hayami, "Supongo que soy demasiado otaku" ,2,R,false,false
+Kochikame, "Lo siento, Hayami" ,0,L,true,false
+Kochikame, "Que deberia hacer?" ,0,L,true,true

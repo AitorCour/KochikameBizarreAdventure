@@ -10,6 +10,7 @@ using System.Linq;
 
 public class DialogueParser : MonoBehaviour
 {
+    public string dialogueFile;
     List<DialogueLine> lines;
     //public List<Sprite> images;
     public Sprite[] images;
@@ -20,13 +21,16 @@ public class DialogueParser : MonoBehaviour
         public int pose;
         public string position;
         public bool inScene;
-        public DialogueLine(string n, string c, int p, string pos, bool inSc)
+        public bool decision;
+
+        public DialogueLine(string n, string c, int p, string pos, bool inSc, bool dec)
         {
             name = n;
             content = c;
             pose = p;
             position = pos;
             inScene = inSc;
+            decision = dec;
         }
     }
 
@@ -43,7 +47,8 @@ public class DialogueParser : MonoBehaviour
         file += ".txt";
 
         lines = new List<DialogueLine>(); //instanciar lista
-        LoadDialogue(file);
+        //LoadDialogue(file);
+        LoadDialogue(dialogueFile +".txt");
 
         //images = new List<Sprite>();
         LoadImages();
@@ -74,12 +79,19 @@ public class DialogueParser : MonoBehaviour
 
         return ""; 
     }
-    public bool GetInScene(int lineNumber)//lineNumber -1?
+    public bool GetInScene(int lineNumber)
     {
         if (lineNumber < lines.Count)
             return lines[lineNumber].inScene;
 
         return true;
+    }
+    public bool GetDecision(int lineNumber)
+    {
+        if (lineNumber < lines.Count)
+            return lines[lineNumber].decision;
+
+        return false;
     }
 
     void LoadDialogue(string filename)
@@ -96,7 +108,7 @@ public class DialogueParser : MonoBehaviour
                 if (line != null)
                 {
                     string[] line_values = SplitCsvLine(line);
-                    DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3], bool.Parse(line_values[4]));
+                    DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3], bool.Parse(line_values[4]), bool.Parse(line_values[5]));
                     lines.Add(line_entry);
                 }
             }

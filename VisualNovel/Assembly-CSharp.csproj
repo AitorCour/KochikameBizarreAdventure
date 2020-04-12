@@ -70,9 +70,10 @@
     <Compile Include="Assets\Scripts\DialogueBox.cs" />
     <Compile Include="Assets\Scripts\DialogueParser.cs" />
     <Compile Include="Assets\Scripts\DoTween.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <None Include="Assets\Resources\Dialogue_1.txt" />
-    <None Include="Assets\Resources\Dialogue_2.txt" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\Resources\Dialogue_2.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Aitor/Documents/KochikameBizarreAdventure/VisualNovel/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -289,6 +290,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/2018.4.17Real/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:/Users/Aitor/Documents/KochikameBizarreAdventure/VisualNovel/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/Aitor/Documents/KochikameBizarreAdventure/VisualNovel/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
@@ -297,9 +301,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>C:/Users/Aitor/Documents/KochikameBizarreAdventure/VisualNovel/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>C:/Users/Aitor/Documents/KochikameBizarreAdventure/VisualNovel/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/2018.4.17Real/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

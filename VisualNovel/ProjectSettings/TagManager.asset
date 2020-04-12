@@ -11,6 +11,9 @@ TagManager:
   - ImageRight
   - ImageLeftB
   - ImageRightB
+  - ButtonText_1
+  - ButtonText_2
+  - ButtonPanel
   layers:
   - Default
   - TransparentFX
