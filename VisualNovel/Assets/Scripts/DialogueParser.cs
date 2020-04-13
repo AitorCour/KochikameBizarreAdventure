@@ -11,7 +11,9 @@ using System.Linq;
 public class DialogueParser : MonoBehaviour
 {
     public string dialogueFile;
+    public string commentFile;
     List<DialogueLine> lines;
+    List<CommentLine> lineComment;
     //public List<Sprite> images;
     public Sprite[] images;
     struct DialogueLine
@@ -22,8 +24,9 @@ public class DialogueParser : MonoBehaviour
         public string position;
         public bool inScene;
         public bool decision;
+        public bool commentary;
 
-        public DialogueLine(string n, string c, int p, string pos, bool inSc, bool dec)
+        public DialogueLine(string n, string c, int p, string pos, bool inSc, bool dec, bool comment)
         {
             name = n;
             content = c;
@@ -31,25 +34,38 @@ public class DialogueParser : MonoBehaviour
             position = pos;
             inScene = inSc;
             decision = dec;
+            commentary = comment;
+        }
+    }
+
+    
+    struct CommentLine
+    {
+        public string commentContent;
+        public CommentLine(string co)
+        {
+            commentContent = co;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        string file = "Dialogue_1";
+        /*string file = "Dialogue_1";
         //string sceneNum = EditorApplication.currentScene; //Scene1
         Scene m_Scene; //new by me
         m_Scene = SceneManager.GetActiveScene(); //Scene1
         string sceneNum = m_Scene.name; //Conversion del la scene  a string
         sceneNum = Regex.Replace(sceneNum, "[^0 - 9]", "");
         file += sceneNum; //Dialogue1
-        file += ".txt";
+        file += ".txt";*/
 
         lines = new List<DialogueLine>(); //instanciar lista
+        lineComment = new List<CommentLine>();
+
         //LoadDialogue(file);
         LoadDialogue(dialogueFile +".txt");
-
+        LoadComments(commentFile +".txt");
         //images = new List<Sprite>();
         LoadImages();
     }
@@ -93,7 +109,20 @@ public class DialogueParser : MonoBehaviour
 
         return false;
     }
+    public bool GetCommentary(int lineNumber)
+    {
+        if (lineNumber < lines.Count)
+            return lines[lineNumber].commentary;
 
+        return false;
+    }
+    public string GetCommentContent(int lineNumber)
+    {
+        if (lineNumber < lineComment.Count)
+            return lineComment[lineNumber].commentContent;
+
+        return "";
+    }
     void LoadDialogue(string filename)
     {
         string file = "Assets/Resources/" + filename;
@@ -108,8 +137,30 @@ public class DialogueParser : MonoBehaviour
                 if (line != null)
                 {
                     string[] line_values = SplitCsvLine(line);
-                    DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3], bool.Parse(line_values[4]), bool.Parse(line_values[5]));
+                    DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3], bool.Parse(line_values[4]), bool.Parse(line_values[5]), bool.Parse(line_values[6]));
                     lines.Add(line_entry);
+                }
+            }
+            while (line != null);
+            r.Close();
+        }
+    }
+    void LoadComments(string filename)
+    {
+        string file = "Assets/Resources/" + filename;
+        string line;
+        StreamReader r = new StreamReader(file);
+
+        using (r)
+        {
+            do
+            {
+                line = r.ReadLine();
+                if (line != null)
+                {
+                    string[] line_values = SplitCsvLine(line);
+                    CommentLine line_entry = new CommentLine(line_values[0]);
+                    lineComment.Add(line_entry);
                 }
             }
             while (line != null);

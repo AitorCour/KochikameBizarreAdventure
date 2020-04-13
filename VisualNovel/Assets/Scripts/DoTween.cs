@@ -55,9 +55,4 @@ public class DoTween : MonoBehaviour
     {
         image_RB.DOAnchorPosX(685, 1, false);
     }
-    public void TextScramble(string dialogue)
-    {
-        textUI.text = string.Empty;
-        textUI.DOText(dialogue, 1, false, ScrambleMode.None, null);
-    }
 }

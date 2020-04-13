@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <None Include="Assets\Resources\Dialogue_1.txt" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\Resources\Comments_1.txt" />
     <None Include="Assets\Resources\Dialogue_2.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Aitor/Documents/KochikameBizarreAdventure/VisualNovel/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
