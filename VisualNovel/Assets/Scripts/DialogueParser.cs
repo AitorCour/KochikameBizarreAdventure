@@ -42,24 +42,17 @@ public class DialogueParser : MonoBehaviour
     struct CommentLine
     {
         public string commentContent;
-        public CommentLine(string co)
+        public bool next;
+        public CommentLine(string co, bool nx)
         {
             commentContent = co;
+            next = nx;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        /*string file = "Dialogue_1";
-        //string sceneNum = EditorApplication.currentScene; //Scene1
-        Scene m_Scene; //new by me
-        m_Scene = SceneManager.GetActiveScene(); //Scene1
-        string sceneNum = m_Scene.name; //Conversion del la scene  a string
-        sceneNum = Regex.Replace(sceneNum, "[^0 - 9]", "");
-        file += sceneNum; //Dialogue1
-        file += ".txt";*/
-
         lines = new List<DialogueLine>(); //instanciar lista
         lineComment = new List<CommentLine>();
 
@@ -123,9 +116,17 @@ public class DialogueParser : MonoBehaviour
 
         return "";
     }
+    public bool GetNextComment(int lineNumber)
+    {
+        if (lineNumber < lineComment.Count)
+            return lineComment[lineNumber].next;
+
+        return false;
+    }
+
     void LoadDialogue(string filename)
     {
-        string file = "Assets/Resources/" + filename;
+        string file = "Assets/Resources/Dialogues/" + filename;
         string line;
         StreamReader r = new StreamReader(file);
 
@@ -147,7 +148,7 @@ public class DialogueParser : MonoBehaviour
     }
     void LoadComments(string filename)
     {
-        string file = "Assets/Resources/" + filename;
+        string file = "Assets/Resources/Comments/" + filename;
         string line;
         StreamReader r = new StreamReader(file);
 
@@ -159,7 +160,7 @@ public class DialogueParser : MonoBehaviour
                 if (line != null)
                 {
                     string[] line_values = SplitCsvLine(line);
-                    CommentLine line_entry = new CommentLine(line_values[0]);
+                    CommentLine line_entry = new CommentLine(line_values[0], bool.Parse(line_values[1]));
                     lineComment.Add(line_entry);
                 }
             }

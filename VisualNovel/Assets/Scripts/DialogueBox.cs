@@ -15,12 +15,14 @@ public class DialogueBox : MonoBehaviour
     private bool inScene;
     private bool isDecision;
     private bool commentary;
+    private bool nextCommentary;
 
     private bool outNext;
     private bool canPass;
     private string outPosition;
 
     public int lineNum;
+    public int commentLine;
     private float textTypeSpeed;
     private float textTypeOriginal = 0.05f;
 
@@ -56,6 +58,7 @@ public class DialogueBox : MonoBehaviour
         tween = GetComponent<DoTween>();
 
         lineNum = -1;
+        commentLine = 0;
         textTypeSpeed = textTypeOriginal;
 
         outNext = false;
@@ -102,8 +105,9 @@ public class DialogueBox : MonoBehaviour
             if(commentary)
             {
                 //mostrar texto linea xx
-                Debug.Log("comment");
-                comment = parser.GetCommentContent(1);//coge la frfase de la linea 20
+                /*Debug.Log("comment");
+                comment = parser.GetCommentContent(commentLine);//coge la frfase de la linea 20
+                nextCommentary = parser.GetNextComment(commentLine);*/
                 SetComment();
             }
         }
@@ -208,10 +212,15 @@ public class DialogueBox : MonoBehaviour
     }
     private void SetComment()
     {
+        Debug.Log("comment");
+        comment = parser.GetCommentContent(commentLine);//coge la frfase de la linea 20
+        nextCommentary = parser.GetNextComment(commentLine);
+        //
+
         //textComment.text = comment;
         commentPanel.SetActive(true);
         StartCoroutine(TypeComment());
-
+        commentLine++;
     }
     IEnumerator Type()
     {
@@ -229,6 +238,15 @@ public class DialogueBox : MonoBehaviour
             yield return new WaitForSeconds(textTypeSpeed);
         }
         yield return new WaitForSeconds(5);
-        commentPanel.SetActive(false);
+        if(!nextCommentary)
+        {
+            commentPanel.SetActive(false);
+            textComment.text = string.Empty;
+        }
+        else
+        {
+            textComment.text = string.Empty;
+            SetComment();
+        }
     }
 }
