@@ -70,7 +70,7 @@ public class DialogueBox : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if(textUI.text == dialogue)
         {
@@ -104,10 +104,6 @@ public class DialogueBox : MonoBehaviour
 
             if(commentary)
             {
-                //mostrar texto linea xx
-                /*Debug.Log("comment");
-                comment = parser.GetCommentContent(commentLine);//coge la frfase de la linea 20
-                nextCommentary = parser.GetNextComment(commentLine);*/
                 SetComment();
             }
         }
@@ -128,6 +124,65 @@ public class DialogueBox : MonoBehaviour
             SetImages();
             Read();
         }
+    }*/
+    public void NextDialogue()
+    {
+        if (textUI.text == dialogue)
+        {
+            textTypeSpeed = textTypeOriginal;
+            canPass = true;
+        }
+
+        if (!isDecision && !canPass)
+        {
+            //canPass = true;
+            textTypeSpeed = 0.01f;
+        }
+        if (!isDecision && canPass)
+        {
+            //ResetImages();//Clear Images
+            lineNum++;
+            canPass = false;
+
+            dialogue = parser.GetContent(lineNum);
+            nameCharacter = parser.GetName(lineNum);
+            pose = parser.GetPose(lineNum);
+            position = parser.GetPosition(lineNum);
+            inScene = parser.GetInScene(lineNum);
+            isDecision = parser.GetDecision(lineNum);
+            commentary = parser.GetCommentary(lineNum);
+
+            MoveSprite();
+            SetImages();
+            Read();
+            //lineNum++;
+
+            if (commentary)
+            {
+                SetComment();
+            }
+        }
+    }
+    public void PreviousDialogue()
+    {
+        if (!isDecision)
+        {
+            //ResetImages();//Clear Images
+            lineNum--;
+            canPass = false;
+
+            dialogue = parser.GetContent(lineNum);
+            nameCharacter = parser.GetName(lineNum);
+            pose = parser.GetPose(lineNum);
+            position = parser.GetPosition(lineNum);
+            inScene = parser.GetInScene(lineNum);
+            isDecision = parser.GetDecision(lineNum);
+
+            MoveSprite();
+            SetImages();
+            Read();
+        }
+        else return;
     }
     private void ResetImages()
     {

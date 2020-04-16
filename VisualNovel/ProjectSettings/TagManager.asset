@@ -16,6 +16,8 @@ TagManager:
   - ButtonPanel
   - CommentPanel
   - TextComment
+  - Next
+  - Previous
   layers:
   - Default
   - TransparentFX
