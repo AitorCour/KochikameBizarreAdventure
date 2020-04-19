@@ -15,6 +15,7 @@ public class DialogueBox : MonoBehaviour
     private bool inScene;
     private bool isDecision;
     private bool commentary;
+    private bool commenting;
     private bool nextCommentary;
 
     private bool outNext;
@@ -22,6 +23,7 @@ public class DialogueBox : MonoBehaviour
     private string outPosition;
 
     public int lineNum;
+    public int currentLine;
     public int commentLine;
     private float textTypeSpeed;
     private float textTypeOriginal = 0.05f;
@@ -58,7 +60,8 @@ public class DialogueBox : MonoBehaviour
         tween = GetComponent<DoTween>();
 
         lineNum = -1;
-        commentLine = 0;
+        currentLine = lineNum;
+        commentLine = -1;
         textTypeSpeed = textTypeOriginal;
 
         outNext = false;
@@ -138,10 +141,26 @@ public class DialogueBox : MonoBehaviour
             //canPass = true;
             textTypeSpeed = 0.01f;
         }
-        if (!isDecision && canPass)
+        if(!isDecision && canPass && lineNum != currentLine)
+        {
+            lineNum++;
+
+            dialogue = parser.GetContent(lineNum);
+            nameCharacter = parser.GetName(lineNum);
+            pose = parser.GetPose(lineNum);
+            position = parser.GetPosition(lineNum);
+            inScene = parser.GetInScene(lineNum);
+            isDecision = parser.GetDecision(lineNum);
+
+            MoveSprite();
+            SetImages();
+            ReadQuick();
+        }
+        if (!isDecision && canPass && lineNum == currentLine)
         {
             //ResetImages();//Clear Images
             lineNum++;
+            currentLine++;
             canPass = false;
 
             dialogue = parser.GetContent(lineNum);
@@ -157,9 +176,11 @@ public class DialogueBox : MonoBehaviour
             Read();
             //lineNum++;
 
-            if (commentary)
+            if (commentary && !commenting)
             {
+                commentLine++;
                 SetComment();
+                commenting = true;
             }
         }
     }
@@ -180,7 +201,7 @@ public class DialogueBox : MonoBehaviour
 
             MoveSprite();
             SetImages();
-            Read();
+            ReadQuick();
         }
         else return;
     }
@@ -265,6 +286,14 @@ public class DialogueBox : MonoBehaviour
             buttonPanel.SetActive(true);
         }
     }
+    private void ReadQuick()
+    {
+        canPass = true;
+        textTypeSpeed = 0;
+        textUI.text = string.Empty;
+        textName.text = nameCharacter;
+        textUI.text = dialogue;
+    }
     private void SetComment()
     {
         Debug.Log("comment");
@@ -275,7 +304,6 @@ public class DialogueBox : MonoBehaviour
         //textComment.text = comment;
         commentPanel.SetActive(true);
         StartCoroutine(TypeComment());
-        commentLine++;
     }
     IEnumerator Type()
     {
@@ -283,6 +311,10 @@ public class DialogueBox : MonoBehaviour
         {
             textUI.text += letter;
             yield return new WaitForSeconds(textTypeSpeed);
+            if (canPass)
+            {
+                break;
+            }
         }
     }
     IEnumerator TypeComment()
@@ -297,11 +329,18 @@ public class DialogueBox : MonoBehaviour
         {
             commentPanel.SetActive(false);
             textComment.text = string.Empty;
+            commenting = false;
         }
         else
         {
             textComment.text = string.Empty;
+            commentLine++;
             SetComment();
         }
+    }
+    public void ResetLines()
+    {
+        lineNum = -1;
+        currentLine = lineNum;
     }
 }

@@ -10,15 +10,10 @@ public class InputManager : MonoBehaviour
     public bool mobile;
     private bool next;
     private bool previous;
-
-    private FixedButton nextButton;
-    private FixedButton previousButton;
     void Start()
     {
         gameManager = GetComponent<GameManager>();
         dialogue = GetComponent<DialogueBox>();
-        nextButton = GameObject.FindGameObjectWithTag("Next").GetComponent<FixedButton>();
-        previousButton = GameObject.FindGameObjectWithTag("Previous").GetComponent<FixedButton>();
     }
 
     // Update is called once per frame
@@ -35,7 +30,7 @@ public class InputManager : MonoBehaviour
                 dialogue.PreviousDialogue();
             }
         }
-        else
+        /*else
         {
             next = nextButton.pressed;
             previous = previousButton.pressed;
@@ -48,6 +43,16 @@ public class InputManager : MonoBehaviour
             {
                 dialogue.PreviousDialogue();
             }
-        }
+        }*/
+    }
+    public void OnclickNextButton()
+    {
+        if (!mobile) return;
+        dialogue.NextDialogue();
+    }
+    public void OnclickPrevButton()
+    {
+        if (!mobile) return;
+        dialogue.PreviousDialogue();
     }
 }

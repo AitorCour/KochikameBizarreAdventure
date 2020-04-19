@@ -12,10 +12,13 @@ public class DialogueParser : MonoBehaviour
 {
     public string dialogueFile;
     public string commentFile;
+    //private DialogueBox dialogueBox;
     List<DialogueLine> lines;
     List<CommentLine> lineComment;
     //public List<Sprite> images;
     public Sprite[] images;
+    public TextAsset txt;
+    public TextAsset txtCo;
     struct DialogueLine
     {
         public string name;
@@ -55,11 +58,9 @@ public class DialogueParser : MonoBehaviour
     {
         lines = new List<DialogueLine>(); //instanciar lista
         lineComment = new List<CommentLine>();
-
-        //LoadDialogue(file);
-        LoadDialogue(dialogueFile +".txt");
-        LoadComments(commentFile +".txt");
-        //images = new List<Sprite>();
+        //dialogueBox = GameObject.FindGameObjectWithTag("Manager").GetComponent<DialogueBox>();
+        LoadDialogue();
+        LoadComments();
         LoadImages();
     }
 
@@ -123,13 +124,19 @@ public class DialogueParser : MonoBehaviour
 
         return false;
     }
-
-    void LoadDialogue(string filename)
+    /*public void SetDialogue(string newDialogue)
     {
-        string file = "Assets/Resources/Dialogues/" + filename;
+        newDialogue = dialogueFile;
+        dialogueBox.ResetLines();
+        LoadDialogue();
+    }*/
+    void LoadDialogue()
+    {
+        string fullText = LoadTextFromFile("Dialogues/" + dialogueFile);
+        
         string line;
-        StreamReader r = new StreamReader(file);
-
+        //StreamReader r = new StreamReader(file);
+        StringReader r = new StringReader(fullText);
         using (r)
         {
             do
@@ -146,11 +153,23 @@ public class DialogueParser : MonoBehaviour
             r.Close();
         }
     }
-    void LoadComments(string filename)
+    public string LoadTextFromFile(string filename)
     {
-        string file = "Assets/Resources/Comments/" + filename;
+        txt = Resources.Load<TextAsset>(filename);
+        return txt.text;
+    }
+    public string LoadCommentFromFile(string filename)
+    {
+        txtCo = Resources.Load<TextAsset>(filename);
+        return txtCo.text;
+    }
+    void LoadComments()
+    {
+        string fullComment = LoadCommentFromFile("Comments/" + commentFile);
+        //string file = "Assets/Resources/Comments/" + filename;
         string line;
-        StreamReader r = new StreamReader(file);
+        //StreamReader r = new StreamReader(file);
+        StringReader r = new StringReader(fullComment);
 
         using (r)
         {

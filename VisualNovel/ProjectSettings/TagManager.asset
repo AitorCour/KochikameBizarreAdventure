@@ -18,6 +18,7 @@ TagManager:
   - TextComment
   - Next
   - Previous
+  - Manager
   layers:
   - Default
   - TransparentFX
