@@ -144,7 +144,8 @@ public class DialogueParser : MonoBehaviour
                 line = r.ReadLine();
                 if (line != null)
                 {
-                    string[] line_values = SplitCsvLine(line);
+                    //string[] line_values = SplitCsvLine(line);
+                    string[] line_values = line.Split('\t');
                     DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3], bool.Parse(line_values[4]), bool.Parse(line_values[5]), bool.Parse(line_values[6]));
                     lines.Add(line_entry);
                 }

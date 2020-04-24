@@ -1,4 +1,4 @@
-Narrador, |Como siempre, mis compañeros me miran con una sonrisa, Hajime se sonroja y gira la cabeza, Umi finge que no me ha visto, Hayami está leyendo un comic dentro del libro del libro de matemáticas, y Talia me seca el sudor de la frente, como siempre vestida de mozuela de bar.|,0,L,true,false,false
+Narrador, "Como siempre, mis compañeros me miran con una sonrisa, Hajime se sonroja y gira la cabeza, Umi finge que no me ha visto, Hayami está leyendo un comic dentro del libro del libro de matemáticas, y Talia me seca el sudor de la frente, como siempre vestida de mozuela de bar.",0,L,true,false,false
 Profesora, "Un placer verte, señor Yamaguchi. Por favor, tome asiento. Ay, me olvidaba, su amigo aún no ha llegado tampoco, ¿sabe dónde se encuentra?",6,R,false,false,false
 Narrador, "Vaya, ¿Toranosuke aún no ha llegado? Seguro que ha tenido una mañana más revuelta que la mía.",0,L,true,false,false
 Talia, "Un placer que haya llegado, Kochikame-kun. Le he preparado un té verde al limón con un poco de canela.",5,R,true,false,false

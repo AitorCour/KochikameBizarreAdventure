@@ -76,6 +76,7 @@
     <None Include="Assets\Resources\Dialogues\Dialogue_1.txt" />
     <None Include="Assets\Resources\Dialogues\Dialogue3.txt" />
     <None Include="Assets\Resources\Comments\Comments_1_UTF8.txt" />
+    <None Include="Assets\Resources\Dialogues\Prueba_01.txt" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\Resources\Dialogues\Dialogue_2.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
