@@ -26,7 +26,7 @@ public class DialogueBox : MonoBehaviour
     public int currentLine;
     public int commentLine;
     private float textTypeSpeed;
-    private float textTypeOriginal = 0.05f;
+    private float textTypeOriginal = 0.03f;
 
     private Text textUI;
     private Text textName;
@@ -66,6 +66,7 @@ public class DialogueBox : MonoBehaviour
 
         outNext = false;
         canPass = true;
+        textUI.text = string.Empty;
 
         commentPanel.SetActive(false);
         buttonPanel.SetActive(false);

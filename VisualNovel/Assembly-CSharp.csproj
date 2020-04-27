@@ -67,13 +67,17 @@
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\Scripts\DataManager.cs" />
     <Compile Include="Assets\Scripts\DialogueBox.cs" />
     <Compile Include="Assets\Scripts\DialogueParser.cs" />
     <Compile Include="Assets\Scripts\DoTween.cs" />
     <Compile Include="Assets\Scripts\FixedButton.cs" />
+    <Compile Include="Assets\Scripts\GameData.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <None Include="Assets\Resources\Dialogues\Dialogue_1.txt" />
+    <None Include="Assets\Resources\Dialogues\Escena_Hayami.txt" />
+    <None Include="Assets\Resources\Dialogues\Escena_01.txt" />
     <None Include="Assets\Resources\Dialogues\Dialogue3.txt" />
     <None Include="Assets\Resources\Comments\Comments_1_UTF8.txt" />
     <None Include="Assets\Resources\Dialogues\Prueba_01.txt" />

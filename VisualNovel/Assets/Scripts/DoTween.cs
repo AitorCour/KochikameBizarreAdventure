@@ -29,19 +29,19 @@ public class DoTween : MonoBehaviour
     }
     public void MoveImage_R()
     {
-        image_R.DOAnchorPosX(1135, 1, false);
+        image_R.DOAnchorPosX(1400, 1, false);
     }
     public void MoveImage_RB()
     {
-        image_RB.DOAnchorPosX(1135, 1, false);
+        image_RB.DOAnchorPosX(1400, 1, false);
     }
     public void MoveImage_L()
     {
-        image_L.DOAnchorPosX(-1135, 1, false);
+        image_L.DOAnchorPosX(-1400, 1, false);
     }
     public void MoveImage_LB()
     {
-        image_LB.DOAnchorPosX(-1135, 1, false);
+        image_LB.DOAnchorPosX(-1400, 1, false);
     }
     public void ToScreenImage_R()
     {

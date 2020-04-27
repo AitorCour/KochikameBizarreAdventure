@@ -1,0 +1,29 @@
+Narrador	Como siempre, mis compañeros me miran con una sonrisa, Hajime se sonroja y gira la cabeza, Umi finge que no me ha visto, Hayami está leyendo un comic dentro del libro del libro de matemáticas, y Talia me seca el sudor de la frente, como siempre vestida de mozuela de bar.	0	L	TRUE	FALSE	FALSE
+Profesora	Un placer verte, señor Yamaguchi. Por favor, tome asiento. Ay, me olvidaba, su amigo aún no ha llegado tampoco, ¿sabe dónde se encuentra?	6	R	FALSE	FALSE	FALSE
+Narrador	Vaya, ¿Toranosuke aún no ha llegado? Seguro que ha tenido una mañana más revuelta que la mía.	0	L	TRUE	FALSE	FALSE
+Talia	Un placer que haya llegado, Kochikame-kun. Le he preparado un té verde al limón con un poco de canela.	5	R	TRUE	FALSE	FALSE
+Kochikame	Gracias, Talia-chan, pero no hacía falta. Ya sabes que no me gusta que trabajes para mí.	0	L	TRUE	FALSE	FALSE
+Narrador	Talia frunció el ceño y se me encaró, por poco pudiendo oler mi colonia de erval esens.	0	L	TRUE	FALSE	FALSE
+Talia	¡Jamás! ¡Se lo pagaré como haga falta, aunque tenga que esclavizarme!	5	R	FALSE	FALSE	FALSE
+Narrador	Es muy servicial desde que la salvé de esos abusones que querían tocarla.	0	L	TRUE	FALSE	FALSE
+Narrador	Me bebí el té de un trago, y lo saboreé al máximo. Estaba rico. Calenté el motor y quemé rueda, lo que provocó que el círculo de chicas que tengo alrededor, incluso mi profesora, se desmayaran. Hajime me regaña.	0	L	TRUE	FALSE	FALSE
+Hajime	K-kochikame-sama. Se-será mejor que no hagas esto, ya sabes que te prohibieron hacer esas posturas porque provocaste una inundación… Que no se hagan daño, ko-kochikame-sama…	1	R	TRUE	FALSE	FALSE
+Narrador	Me bajo un poco las gafas y le giño el ojo. Hajime retrocede un poco y traga saliva.	0	L	TRUE	FALSE	FALSE
+Kochikame	No lo haré más si están cerca, te lo prometo.	0	L	TRUE	FALSE	FALSE
+Narrador	Hajime sonríe.	0	L	TRUE	FALSE	FALSE
+Hajime	Gracias, kochi.	1	R	FALSE	FALSE	FALSE
+Narrador	Después de eso, la profesora se sienta en mi regazo y sigue la clase. Al cabo de un rato escucho el zumbido de un todoterreno de los 90, marca registrada, para que luego se detenga dicho sonido y empiezo a escuchar unos pasos gruesos y amplios, muy conocidos. Sonrío y pronuncio su nombre.	0	L	TRUE	FALSE	FALSE
+Kochikame	Hm, Toranosuke.	0	L	TRUE	FALSE	FALSE
+Narrador	La puerta se abre de par en par, y ahí lo veo, encendiéndose un puro habanero con una cerilla y quitándose las gafas de sol, mostrando su preciada cicatriz. Me quito el cigarro de la boca y lo guardo en un estuche, para encenderme otro.	0	L	TRUE	FALSE	FALSE
+Kochikame	¿De dónde vienes, Sato-san? ¿De tu granja agrícola protectora del medio ambiente para acabar con las empresas farmacéuticas que envenenan nuestros productos alimenticios?	0	L	TRUE	FALSE	FALSE
+Toranosuke	Eres un pícaro hijo de puta, Kochikame-san. Me conoces como a tu hijo. Pero estaba construyendo una casa para los sintecho, que se morían de frio y les prometí que lo haría. Pero, ¿Qué habría hecho sin ti, amigo? Gracias a ti soy el que soy.	2	R	TRUE	FALSE	FALSE
+Narrador	Entonces me dio la mano y chocamos las palmas en forma de fortaleza, cuyo choque hizo temblar ligeramente el edificio entero, pero la gente ya estaba acostumbrada.	0	L	TRUE	FALSE	FALSE
+Profesora	Pues como veo que os habéis portado tan bien, ¡os dejo la mañana libre!	6	RB	FALSE	FALSE	FALSE
+Kochikame	Sensei, no nos malinterprete, por favor. Siga con la clase, le escuchamos.	0	L	FALSE	FALSE	FALSE
+Narrador	La profesora sonríe y nos hace caso. Después de hacer las clases de la mañana y de corregir un par de veces al profesor que se había equivocado con unas ecuaciones cuádruples, dimos paso al almuerzo, donde mis amigos juntaron sus mesas alrededor de mi moto.	7	L	FALSE	FALSE	FALSE
+Narrador	El pobre de Toranosuke ha tenido que volver a acabar la casa, pero ha dicho que estará aquí para cuando acabemos el descanso. Esta vez le he hecho yo la comida a Talia, aunque igualmente me he quedado con la que ella me prepara cada día, porque se sentiría muy mal si no me la comiera. Será mi cena. Me pondré más serio con ella, pero poco a poco. No quiero que me malinterprete.	7	L	FALSE	FALSE	FALSE
+Narrador	Hajime se me acerca con aires de querer preguntarme algo. Parece algo nervioso, más de lo normal, pero supongo que es normal: acabo de quitarme la chaqueta.	0	L	TRUE	FALSE	FALSE
+Kochikame	¿Qué ocurre, Hajime?	0	L	TRUE	FALSE	FALSE
+Hajime	Eh, Kochikame… ¿Te gustaría comer con nosotros hoy? Conmigo y con Hayami. Iremos a la cafetería, ha olvidado traerse su comida…	1	R	TRUE	FALSE	FALSE
+Narrador	El pobre está nerviosillo, se está rascando la nuca.	0	L	FALSE	FALSE	FALSE
+Narrador	Hmm, ¿que podría hacer? Me sabe mal no comer con Talia y Umi, después de que la primera me haya preparado el almuerzo…	7	L	FALSE	TRUE	FALSE
