@@ -1,8 +1,0 @@
-Kochikame,	"Serà mejor que vaya a casa",	0,	R,	true,	false,	false
-Hayami,	"Deja que te acompañe,	Kochi-kun",	2,	L,	true,	false,	false
-Kochikame,	"Gordas no.",	0,	L,	true,	false,	false
-Hayami,	"Jou",	2,	R,	true,	false,	false
-Umi,	"Mas para mi <3",	1,	RB,	true,	false,	false
-Kochikame, "B)" ,0,L,true,false,false
-Hayami, "Supongo que soy demasiado otaku" ,2,R,false,false,false
-Kochikame, "Lo siento, Hayami" ,0,L,true,false,false

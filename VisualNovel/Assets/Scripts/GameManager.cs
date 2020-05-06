@@ -8,20 +8,44 @@ public class GameManager : MonoBehaviour
     public bool menu = true;
     private string mySlot;
     public GameObject sure = null;
+    private TextLoader[] texts;
+    private DialogueParser dialogueParser;
 
     void Start()
     {
+        LangManager.LoadLanguage();
+        
+        texts = GetComponentsInChildren<TextLoader>();
         int scene = SceneManager.GetActiveScene().buildIndex;
-        if(!menu)
+        //SetLanguage(1);
+        if (!menu)
         {
             //SaveData("1");
+            dialogueParser = GameObject.FindObjectOfType<DialogueParser>();
             Data.SetScene(scene);
             StartCoroutine(WaitAutoSave(scene));
+            string language = LangManager.SelectedLanguage();
+            dialogueParser.Initialize(language);
         }
     }
     public void ChangeScene(int nextScene)
     {
         SceneManager.LoadScene(nextScene);
+    }
+    public void SetLanguage(int id)
+    {
+        //coje el current language 
+        if (id < 0 || id > 1) id = 0;
+
+        LangManager.langData.currentLanguage = (LangData.Languages)id;//convierte entero a enumerable
+        LangManager.LoadConfigText();//Se vuelve a cargar el texto para cambiarlo
+
+        for (int i = 0; i < texts.Length; i++)
+        {
+            texts[i].Initialize();//Se inicializan los texts loaders
+        }
+
+        LangManager.SaveLanguage();
     }
     public void CheckifDataExist(string slotName)
     {

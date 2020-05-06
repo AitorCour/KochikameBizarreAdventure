@@ -1,0 +1,10 @@
+Narrador, "Como siempre, mis compañeros me miran con una sonrisa, Hajime se sonroja y gira la cabeza, Umi finge que no me ha visto, Hayami está leyendo un comic dentro del libro del libro de matemáticas, y Talia me seca el sudor de la frente, como siempre vestida de mozuela de bar.",0,L,true,false,false
+Profesora, "Un placer verte, señor Yamaguchi. Por favor, tome asiento. Ay, me olvidaba, su amigo aún no ha llegado tampoco, ¿sabe dónde se encuentra?",6,R,false,false,false
+Narrador, "Vaya, ¿Toranosuke aún no ha llegado? Seguro que ha tenido una mañana más revuelta que la mía.",0,L,true,false,false
+Talia, "Un placer que haya llegado, Kochikame-kun. Le he preparado un té verde al limón con un poco de canela.",5,R,true,false,false
+Kochikame, "Gracias, Talia-chan, pero no hacía falta. Ya sabes que no me gusta que trabajes para mí.",0,L,true,false,false
+Narrador, "Talia frunció el ceño y se me encaró, por poco pudiendo oler mi colonia de erval esens.",0,L,true,false,false
+Talia, "¡Jamás! ¡Se lo pagaré como haga falta, aunque tenga que esclavizarme!",5,R,true,false,false
+Narrador, "Es muy servicial desde que la salvé de esos abusones que querían tocarla.",0,L,true,false,false
+Narador, "Me bebí el té de un trago, y lo saboreé al máximo. Estaba rico. Calenté el motor y quemé rueda, lo que provocó que el círculo de chicas que tengo alrededor, incluso mi profesora, se desmayaran. Hajime me regaña.",0,L,true,false,false
+Hajime, "K-kochikame-sama. Se-será mejor que no hagas esto, ya sabes que te prohibieron hacer esas posturas porque provocaste una inundación… Que no se hagan daño, ko-kochikamesama…",1,R,true,false,false

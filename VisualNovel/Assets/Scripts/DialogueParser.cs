@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEditor;
-using System.Text;
+//using UnityEditor;
+//using System.Text;
 using System.IO;
-using System.Text.RegularExpressions;
-using System.Linq;
+//using System.Text.RegularExpressions;
+//using System.Linq;
+//using System.Xml.Serialization;
+using System;
 
 public class DialogueParser : MonoBehaviour
 {
@@ -41,7 +43,6 @@ public class DialogueParser : MonoBehaviour
         }
     }
 
-    
     struct CommentLine
     {
         public string commentContent;
@@ -54,13 +55,13 @@ public class DialogueParser : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Initialize(string language)
     {
         lines = new List<DialogueLine>(); //instanciar lista
         lineComment = new List<CommentLine>();
         //dialogueBox = GameObject.FindGameObjectWithTag("Manager").GetComponent<DialogueBox>();
-        LoadDialogue();
-        LoadComments();
+        LoadDialogue(language);
+        //LoadComments();
         LoadImages();
     }
 
@@ -130,33 +131,40 @@ public class DialogueParser : MonoBehaviour
         dialogueBox.ResetLines();
         LoadDialogue();
     }*/
-    void LoadDialogue()
+    void LoadDialogue(string language)
     {
-        string fullText = LoadTextFromFile("Dialogues/" + dialogueFile);
-        
-        string line;
-        //StreamReader r = new StreamReader(file);
-        StringReader r = new StringReader(fullText);
-        using (r)
+        try
         {
-            do
+            string fullText = LoadTextFromFile("Dialogues/" + language + "/" + dialogueFile);//Hacer distintas carpetas para los idiomas, y que los pille por carpetas if LangData.currentLanguage == spanish route spanish
+
+            string line;
+            //StreamReader r = new StreamReader(file);
+            StringReader r = new StringReader(fullText);
+            using (r)
             {
-                line = r.ReadLine();
-                if (line != null)
+                do
                 {
-                    //string[] line_values = SplitCsvLine(line);
-                    string[] line_values = line.Split('\t');
-                    DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3], bool.Parse(line_values[4]), bool.Parse(line_values[5]), bool.Parse(line_values[6]));
-                    lines.Add(line_entry);
+                    line = r.ReadLine();
+                    if (line != null)
+                    {
+                        //string[] line_values = SplitCsvLine(line);
+                        string[] line_values = line.Split('\t');
+                        DialogueLine line_entry = new DialogueLine(line_values[0], line_values[1], int.Parse(line_values[2]), line_values[3], bool.Parse(line_values[4]), bool.Parse(line_values[5]), bool.Parse(line_values[6]));
+                        lines.Add(line_entry);
+                    }
                 }
+                while (line != null);
+                r.Close();
             }
-            while (line != null);
-            r.Close();
+        }
+        catch(Exception e)
+        {
+            Debug.LogError("LoadConfigText ERROR: " + e);
         }
     }
     public string LoadTextFromFile(string filename)
     {
-        txt = Resources.Load<TextAsset>(filename);
+        txt = Resources.Load<TextAsset>(filename);//Hacer distintas carpetas para los idiomas, y que los pille por carpetas
         return txt.text;
     }
     public string LoadCommentFromFile(string filename)
@@ -166,44 +174,49 @@ public class DialogueParser : MonoBehaviour
     }
     void LoadComments()
     {
-        string fullComment = LoadCommentFromFile("Comments/" + commentFile);
-        //string file = "Assets/Resources/Comments/" + filename;
-        string line;
-        //StreamReader r = new StreamReader(file);
-        StringReader r = new StringReader(fullComment);
-
-        using (r)
+        try
         {
-            do
+            string fullComment = LoadCommentFromFile("Comments/" + commentFile);
+            string line;
+
+            StringReader r = new StringReader(fullComment);
+            using (r)
             {
-                line = r.ReadLine();
-                if (line != null)
+                do
                 {
-                    string[] line_values = SplitCsvLine(line);
-                    CommentLine line_entry = new CommentLine(line_values[0], bool.Parse(line_values[1]));
-                    lineComment.Add(line_entry);
+                    line = r.ReadLine();
+                    if (line != null)
+                    {
+                        string[] line_values = line.Split('\t');
+                        CommentLine line_entry = new CommentLine(line_values[0], bool.Parse(line_values[1]));
+                        lineComment.Add(line_entry);
+                    }
                 }
+                while (line != null);
+                r.Close();
             }
-            while (line != null);
-            r.Close();
+        }
+        catch(Exception e)
+        {
+            Debug.LogError("LoadConfigText ERROR: " + e);
         }
     }
     void LoadImages()
     {
-        for(int i = 0; i < lines.Count; i++)
+        /*for(int i = 0; i < lines.Count; i++)
         {
-            /*string imageName = lines[i].name;
+            string imageName = lines[i].name;
             Sprite image = (Sprite)Resources.Load(imageName, typeof(Sprite));
             if(!images.Contains(image))
             {
                 images.Add(image);
-            }*/
+            }
             
-        }
+        }*/
         images = Resources.LoadAll<Sprite>("SpritesGame");
     }
     //https://answers.unity.com/questions/144200/are-there-any-csv-reader-for-unity3d-without-needi.html?sort=oldest
-    string[] SplitCsvLine(string line)
+    /*string[] SplitCsvLine(string line)
     {
         string pattern = @"
      # Match one value in valid CSV string.
@@ -221,5 +234,5 @@ public class DialogueParser : MonoBehaviour
                         RegexOptions.ExplicitCapture | RegexOptions.IgnorePatternWhitespace | 
                         RegexOptions.Multiline) select m.Groups[1].Value).ToArray();
         return values;
-    }
+    }*/
 }

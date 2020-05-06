@@ -1,0 +1,4 @@
+	Umi y Talia estarán bien sin mí, ya les compensaré en otro momento, además de que nunca me han negado nada y no les debo explicaciones.	7	L	FALSE	FALSE	FALSE
+Kochikame	Claro Hajime, vamos tirando.	0	L	TRUE	FALSE	FALSE
+	Me levanto de inmediato y le saco las llaves a la moto, guardándomelas en la chaqueta y cogiendo del maletero de atrás mi propio almuerzo. Le doy lo que le había preparado a Talia, que lo coge con una mueca y acompaño a Hajime hasta la cafetería, donde nos encontramos a Hayami haciendo cola en el baño de la cafetería.	0	L	TRUE	FALSE	FALSE
+Kochikame	¿No has podido ir a casa a hacer tus necesidades?	0	L	TRUE	FALSE	FALSE

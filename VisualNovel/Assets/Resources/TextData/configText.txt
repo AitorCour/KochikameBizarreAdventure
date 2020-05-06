@@ -1,0 +1,9 @@
+﻿Key	Spanish	English
+res	resolución	resolution
+vol	volumen	volume
+qual	gráfico	quality
+lang	idioma	language
+new	nuevo	new game
+load	cargar	load
+set	ajustes	settings
+title	El grito de socorro de Kochikame-kun	Yamaguchi Kochikame no kureijina boken
